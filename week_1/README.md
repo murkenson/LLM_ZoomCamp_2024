@@ -1,8 +1,10 @@
-Running ElasticSearch:
+Use [this](https://groq.com/)
 
 ```bash
- GROQ_SECRET_ACCESS_KEY="API_KEY"
+export GROQ_API_KEY=''
 ```
+
+Running ElasticSearch:
 
 ```bash
 docker run -it \

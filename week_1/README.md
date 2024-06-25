@@ -1,3 +1,6 @@
+Retrieval augmented generation or RAG is an architectural approach that pulls your data as context for large language models (LLMs) to improve relevancy.
+
+
 Use [this](https://groq.com/)
 
 ```bash

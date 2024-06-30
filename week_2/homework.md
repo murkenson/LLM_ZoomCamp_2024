@@ -68,7 +68,8 @@ cat 2b
 Test the following prompt: "10 * 10". What's the answer?
 
 >Answer:
-```
+```bash
+The answer to the prompt "10 * 10" is 100.
 ```
 
 ## Q4. Donwloading the weights 

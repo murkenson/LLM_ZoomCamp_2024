@@ -131,6 +131,7 @@ What do you put after `COPY`?
 
 >Answer:
 ```
+COPY ./ollama_files/ /root/.ollama/
 ```
 
 ## Q6. Serving it 

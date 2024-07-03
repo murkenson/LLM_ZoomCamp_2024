@@ -167,6 +167,11 @@ response = client.chat.completions.create(
 
 How many completion tokens did you get in response?
 
+>command
+```
+docker run -i --rm -v ./ollama_files:/root/.ollama -p 11434:11434 --name ollama  ollama/ollama
+```
+
 * 304
 * 604
 * 904
@@ -174,6 +179,7 @@ How many completion tokens did you get in response?
 
 >Answer:
 ```
+304
 ```
 
 ## Submit the results

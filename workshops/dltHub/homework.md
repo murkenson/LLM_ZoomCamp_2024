@@ -24,7 +24,7 @@ How many rows does the lancedb table "notion_pages__homework" have?
 
 >Answer:
 ```
-
+16
 ```
 
 
@@ -39,7 +39,7 @@ In the demo, we created an incremental dlt resource `rest_api_notion_incremental
 
 >Answer:
 ```
-
+`Timestamp('2024-07-05 22:56:00+0000', tz='UTC') (OR "2024-07-05T22:56:00.000Z")`
 ```
 
 
@@ -55,7 +55,7 @@ Find out with the help of the AI assistant: how many PTO days are the employees 
 
 >Answer:
 ```
-
+30
 ```
 
 

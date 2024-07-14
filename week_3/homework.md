@@ -202,7 +202,6 @@ What's hitrate for our dataset for Elastic?
 0.93
 ```
 
-
 ## Submit the results
 
 * Submit your results here: https://courses.datatalks.club/llm-zoomcamp-2024/homework/hw3

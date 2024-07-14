@@ -15,6 +15,9 @@ Welcome to the LLM Zoomcamp 2024 repository! Here, you can find the completed ho
 ## Tools
 For this course, you'll need to have the following software installed on your computer:
 
+- `juputer notebook`
+- `elasticsearch` 
+
 
 # Instructors
 

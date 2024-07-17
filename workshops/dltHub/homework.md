@@ -27,7 +27,6 @@ How many rows does the lancedb table "notion_pages__homework" have?
 17
 ```
 
-
 ## Q2. Running the Pipeline: Last edited time
 
 In the demo, we created an incremental dlt resource `rest_api_notion_incremental` that keeps track of `last_edited_time`. What value does it store after you've run your pipeline once? (Hint: you will be able to get this value by performing some aggregation function on the column `last_edited_time` of the table)
@@ -42,8 +41,6 @@ In the demo, we created an incremental dlt resource `rest_api_notion_incremental
 `Timestamp('2024-07-05 23:33:00+0000', tz='UTC') (OR "2024-07-05T23:33:00.000Z")`
 ```
 
-
-
 ## Q3. Ask the Assistant 
 
 Find out with the help of the AI assistant: how many PTO days are the employees entitled to in a year?  
@@ -57,7 +54,6 @@ Find out with the help of the AI assistant: how many PTO days are the employees 
 ```
 30
 ```
-
 
 ## Submit the results
 

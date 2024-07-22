@@ -58,7 +58,7 @@ What's the first value of the resulting vector?
 
 >Answer:
 ```
-
+-0.22
 ```
 
 ## Q2. Computing the dot product
@@ -77,7 +77,7 @@ What's the 75% percentile of the score?
 
 >Answer:
 ```
-
+51.67
 ```
 
 ## Q3. Computing the cosine
@@ -112,7 +112,7 @@ What's the 75% cosine in the scores?
 
 >Answer:
 ```
-
+0.83
 ```
 
 ## Q4. Rouge
@@ -155,7 +155,7 @@ What's the F score for `rouge-1`?
 
 >Answer:
 ```
-
+0.55
 ```
 
 ## Q5. Average rouge score
@@ -169,7 +169,7 @@ Let's compute the average between `rouge-1`, `rouge-2` and `rouge-l` for the sam
 
 >Answer:
 ```
-
+0.55
 ```
 
 ## Q6. Average rouge score for all the data points
@@ -194,7 +194,7 @@ What's the agerage `rouge_l` across all the records?
 
 >Answer:
 ```
-
+0.40
 ```
 
 ## Submit the results

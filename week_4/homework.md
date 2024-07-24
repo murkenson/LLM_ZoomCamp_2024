@@ -58,7 +58,7 @@ What's the first value of the resulting vector?
 
 >Answer:
 ```
--0.22
+-0.42
 ```
 
 ## Q2. Computing the dot product
@@ -77,7 +77,7 @@ What's the 75% percentile of the score?
 
 >Answer:
 ```
-51.67
+31.67
 ```
 
 ## Q3. Computing the cosine

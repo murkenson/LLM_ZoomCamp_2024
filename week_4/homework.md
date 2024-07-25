@@ -155,7 +155,7 @@ What's the F score for `rouge-1`?
 
 >Answer:
 ```
-0.55
+0.45
 ```
 
 ## Q5. Average rouge score
@@ -169,7 +169,7 @@ Let's compute the average between `rouge-1`, `rouge-2` and `rouge-l` for the sam
 
 >Answer:
 ```
-0.55
+0.35
 ```
 
 ## Q6. Average rouge score for all the data points

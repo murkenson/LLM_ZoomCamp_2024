@@ -10,12 +10,10 @@ from sentence_transformers import SentenceTransformer
 
 ELASTIC_URL = os.getenv("ELASTIC_URL", "http://elasticsearch:9200")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/v1/")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "your-api-key-here")
 
 
 es_client = Elasticsearch(ELASTIC_URL)
 ollama_client = OpenAI(base_url=OLLAMA_URL, api_key="ollama")
-openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 model = SentenceTransformer("multi-qa-MiniLM-L6-cos-v1")
 
@@ -82,19 +80,9 @@ CONTEXT:
 
 def llm(prompt, model_choice):
     start_time = time.time()
-    if model_choice.startswith('ollama/'):
+    print(model_choice)
+    if model_choice.startswith("ollama/"):
         response = ollama_client.chat.completions.create(
-            model=model_choice.split('/')[-1],
-            messages=[{"role": "user", "content": prompt}]
-        )
-        answer = response.choices[0].message.content
-        tokens = {
-            'prompt_tokens': response.usage.prompt_tokens,
-            'completion_tokens': response.usage.completion_tokens,
-            'total_tokens': response.usage.total_tokens
-        }
-    elif model_choice.startswith('openai/'):
-        response = openai_client.chat.completions.create(
             model=model_choice.split('/')[-1],
             messages=[{"role": "user", "content": prompt}]
         )
@@ -135,24 +123,13 @@ def evaluate_relevance(question, answer):
     """.strip()
 
     prompt = prompt_template.format(question=question, answer=answer)
-    evaluation, tokens, _ = llm(prompt, 'openai/gpt-4o-mini')
+    evaluation, tokens, _ = llm(prompt, 'ollama/phi3')
     
     try:
         json_eval = json.loads(evaluation)
         return json_eval['Relevance'], json_eval['Explanation'], tokens
     except json.JSONDecodeError:
         return "UNKNOWN", "Failed to parse evaluation", tokens
-
-
-def calculate_openai_cost(model_choice, tokens):
-    openai_cost = 0
-
-    if model_choice == 'openai/gpt-3.5-turbo':
-        openai_cost = (tokens['prompt_tokens'] * 0.0015 + tokens['completion_tokens'] * 0.002) / 1000
-    elif model_choice in ['openai/gpt-4o', 'openai/gpt-4o-mini']:
-        openai_cost = (tokens['prompt_tokens'] * 0.03 + tokens['completion_tokens'] * 0.06) / 1000
-
-    return openai_cost
 
 
 def get_answer(query, course, model_choice, search_type):
@@ -166,8 +143,6 @@ def get_answer(query, course, model_choice, search_type):
     answer, tokens, response_time = llm(prompt, model_choice)
     
     relevance, explanation, eval_tokens = evaluate_relevance(query, answer)
-
-    openai_cost = calculate_openai_cost(model_choice, tokens)
  
     return {
         'answer': answer,
@@ -181,5 +156,4 @@ def get_answer(query, course, model_choice, search_type):
         'eval_prompt_tokens': eval_tokens['prompt_tokens'],
         'eval_completion_tokens': eval_tokens['completion_tokens'],
         'eval_total_tokens': eval_tokens['total_tokens'],
-        'openai_cost': openai_cost
     }

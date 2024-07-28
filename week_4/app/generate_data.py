@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from db import save_conversation, save_feedback, get_db_connection
 
-# Set the timezone to CET (Europe/Berlin)
-tz = ZoneInfo("Europe/Berlin")
+# Set the timezone to CET (Europe/Paris)
+tz = ZoneInfo("Europe/Paris")
 
 # List of sample questions and answers
 SAMPLE_QUESTIONS = [
@@ -26,7 +26,7 @@ SAMPLE_ANSWERS = [
 ]
 
 COURSES = ["machine-learning-zoomcamp", "data-engineering-zoomcamp", "mlops-zoomcamp"]
-MODELS = ["ollama/phi3", "openai/gpt-3.5-turbo", "openai/gpt-4o", "openai/gpt-4o-mini"]
+MODELS = ["ollama/phi3", "ollama/llama3", "ollama/mistral"]
 RELEVANCE = ["RELEVANT", "PARTLY_RELEVANT", "NON_RELEVANT"]
 
 
@@ -42,11 +42,6 @@ def generate_synthetic_data(start_time, end_time):
         model = random.choice(MODELS)
         relevance = random.choice(RELEVANCE)
 
-        openai_cost = 0
-
-        if model.startswith("openai/"):
-            openai_cost = random.uniform(0.001, 0.1)
-
         answer_data = {
             "answer": answer,
             "response_time": random.uniform(0.5, 5.0),
@@ -59,7 +54,6 @@ def generate_synthetic_data(start_time, end_time):
             "eval_prompt_tokens": random.randint(50, 150),
             "eval_completion_tokens": random.randint(20, 100),
             "eval_total_tokens": random.randint(70, 250),
-            "openai_cost": openai_cost,
         }
 
         save_conversation(conversation_id, question, answer_data, course, current_time)
@@ -97,11 +91,6 @@ def generate_live_data():
         model = random.choice(MODELS)
         relevance = random.choice(RELEVANCE)
 
-        openai_cost = 0
-
-        if model.startswith("openai/"):
-            openai_cost = random.uniform(0.001, 0.1)
-
         answer_data = {
             "answer": answer,
             "response_time": random.uniform(0.5, 5.0),
@@ -114,7 +103,6 @@ def generate_live_data():
             "eval_prompt_tokens": random.randint(50, 150),
             "eval_completion_tokens": random.randint(20, 100),
             "eval_total_tokens": random.randint(70, 250),
-            "openai_cost": openai_cost,
         }
 
         save_conversation(conversation_id, question, answer_data, course, current_time)

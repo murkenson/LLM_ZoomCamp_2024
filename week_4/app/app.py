@@ -32,7 +32,7 @@ def main():
     # Model selection
     model_choice = st.selectbox(
         "Select a model:",
-        ["ollama/phi3", "openai/gpt-3.5-turbo", "openai/gpt-4o", "openai/gpt-4o-mini"]
+        ["ollama/phi3", "ollama/llama3", "ollama/mistral"]
     )
     print_log(f"User selected model: {model_choice}")
 
@@ -62,8 +62,6 @@ def main():
             st.write(f"Relevance: {answer_data['relevance']}")
             st.write(f"Model used: {answer_data['model_used']}")
             st.write(f"Total tokens: {answer_data['total_tokens']}")
-            if answer_data['openai_cost'] > 0:
-                st.write(f"OpenAI cost: ${answer_data['openai_cost']:.4f}")
 
             # Save conversation to database
             print_log("Saving conversation to database")

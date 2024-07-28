@@ -4,15 +4,15 @@ from psycopg2.extras import DictCursor
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-tz = ZoneInfo("Europe/Berlin")
+tz = ZoneInfo("Europe/Paris")
 
 
 def get_db_connection():
     return psycopg2.connect(
-        host=os.getenv("POSTGRES_HOST", "postgres"),
+        host=os.getenv("POSTGRES_HOST", "localhost"),
         database=os.getenv("POSTGRES_DB", "course_assistant"),
-        user=os.getenv("POSTGRES_USER", "your_username"),
-        password=os.getenv("POSTGRES_PASSWORD", "your_password"),
+        user=os.getenv("POSTGRES_USER", "admin"),
+        password=os.getenv("POSTGRES_PASSWORD", "admin"),
     )
 
 
@@ -39,7 +39,6 @@ def init_db():
                     eval_prompt_tokens INTEGER NOT NULL,
                     eval_completion_tokens INTEGER NOT NULL,
                     eval_total_tokens INTEGER NOT NULL,
-                    openai_cost FLOAT NOT NULL,
                     timestamp TIMESTAMP WITH TIME ZONE NOT NULL
                 )
             """)
@@ -68,8 +67,8 @@ def save_conversation(conversation_id, question, answer_data, course, timestamp=
                 INSERT INTO conversations 
                 (id, question, answer, course, model_used, response_time, relevance, 
                 relevance_explanation, prompt_tokens, completion_tokens, total_tokens, 
-                eval_prompt_tokens, eval_completion_tokens, eval_total_tokens, openai_cost, timestamp)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, COALESCE(%s, CURRENT_TIMESTAMP))
+                eval_prompt_tokens, eval_completion_tokens, eval_total_tokens, timestamp)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, COALESCE(%s, CURRENT_TIMESTAMP))
             """,
                 (
                     conversation_id,
@@ -86,7 +85,6 @@ def save_conversation(conversation_id, question, answer_data, course, timestamp=
                     answer_data["eval_prompt_tokens"],
                     answer_data["eval_completion_tokens"],
                     answer_data["eval_total_tokens"],
-                    answer_data["openai_cost"],
                     timestamp,
                 ),
             )

@@ -11,7 +11,7 @@ services:
       - "${ELASTIC_PORT:-9200}:9200"
       - "9300:9300"
     volumes:
-      - elasticsearch_data:/usr/share/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
 
   ollama:
     image: ollama/ollama
@@ -47,7 +47,6 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - MODEL_NAME=${MODEL_NAME}
       - INDEX_NAME=${INDEX_NAME}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
     ports:
       - "${STREAMLIT_PORT:-8501}:8501"
     depends_on:
@@ -65,10 +64,10 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
     depends_on:
-      - postgres
+    - postgres
 
 volumes:
-  elasticsearch_data:
+  esdata:
   ollama_data:
   postgres_data:
   grafana_data:

@@ -11,6 +11,12 @@ cd rag-project
 ./scripts/start.sh
 ```
 
+
+```bash
+pip install -U spacy
+python -m spacy download en_core_web_sm
+```
+
 Once started, go to [http://localhost:6789/](http://localhost:6789/)
 
 For more setup information, refer to these [instructions](https://docs.mage.ai/getting-started/setup#docker-compose-template)
